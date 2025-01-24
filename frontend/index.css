@@ -1,0 +1,39 @@
+/* Apply global styles */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(15, 5, 19); /* Keep the global background black */
+    color: white; /* Ensure text is visible on black background */
+    font-family: Arial, sans-serif; /* Set a clean font */
+}
+
+/* Editor container styles */
+.editor-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    padding: 20px;
+}
+
+/* Textarea styles */
+#editor {
+    width: 80%; /* Take up 80% of the page width */
+    height: 80%; /* Take up 80% of the page height */
+    background-color: rgb(28, 6, 46); /* White background for the editor */
+    color: rgb(63, 189, 13); /* Black text color for readability */
+    border: 2px solid #444; /* Slight border for definition */
+    border-radius: 8px; /* Rounded corners */
+    padding: 10px; /* Space inside the textarea */
+    font-size: 16px; /* Make the text easily readable */
+    font-family: 'Courier New', Courier, monospace; /* Ideal for code and text */
+    resize: none; /* Disable resizing for consistency */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+}
+
+/* Focus state for the editor */
+#editor:focus {
+    outline: none; /* Remove default focus outline */
+    border-color: #ff00c8; /* Highlight border on focus */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Glow effect */
+}
