@@ -101,3 +101,14 @@ document.getElementById("openFile").addEventListener("click", () => {
     document.getElementById("fileInput").click();
 });
 document.getElementById("fileInput").addEventListener("change", openFile);
+
+const clearContent = () => {
+      const textArea = document.getElementById("editor");
+      textArea.value = ""
+}
+
+document.getElementById("clearContent").addEventListener("click",clearContent);
+
+
+
+
