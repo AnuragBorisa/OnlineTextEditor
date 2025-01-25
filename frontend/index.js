@@ -2,10 +2,60 @@
 let lastSavedContent = "";
 let debounceTimer;
 
+let files = [];
+let activeFileId = null;
 
-const saveToLocalStorage = (content) => {
+const getUserId = () => {
+      let userId = localStorage.getItem("userId");
+      if(!userId){
+        userId = `user_${Date.now()}_${Math.random().toString(36).substring(2, 15)}`;
+        localStorage.setItem("userId",userId);
+      }
+
+      return userId;
+}
+
+const userId = getUserId();
+
+const loadAutoSavedContent = (activeFileId) => {
+   return localStorage.getItem(`${activeFileId}`)
+}
+
+const saveFile=(fileId)=>{
+      activeFileId = `${userId}_${fileId}`;
+      const content = document.getElementById("editor").value;
+      if(content!==""){
+        localStorage.setItem(activeFileId,content);
+      }
+      else{
+        alert("Cant save empty file");
+      }
+      
+}
+
+const switchToFile = (fileId) => {
+    if(!fileId){
+        fileId = "file1";
+    }
+
+    activeFileId = `${userId}_${fileId}`;
+    const content = loadAutoSavedContent(activeFileId);
+    if(content!==null){
+        document.getElementById(editor).value = content;
+    }
+  
+    lastSavedContent = content || ""
+    showFeedback(`Switched to the file : ${fileId}`)
+}
+
+document.getElementById("mySaves").addEventListener("click",()=>{
+    
+})
+
+
+const saveToLocalStorage = (fileKey,content) => {
     try {
-        localStorage.setItem("editorContent", content);
+        localStorage.setItem(fileKey, content);
     } catch (error) {
         console.error("Failed to save to local storage", error);
     }
@@ -32,44 +82,28 @@ const showFeedback = (message) => {
 const userInput = document.getElementById("editor");
 userInput.addEventListener("input", (event) => {
     const content = event.target.value;
-
+    if(!activeFileId){
+        switchToFile();
+    }
     clearTimeout(debounceTimer);
-
     debounceTimer = setTimeout(() => {
-        if (content !== lastSavedContent) {
-            saveToLocalStorage(content);
+        if (content !== lastSavedContent && activeFileId) {
+            saveToLocalStorage(activeFileId,content);
             lastSavedContent = content;
-            showFeedback("Saved");
+            showFeedback(`Saved`);
         }
     }, 500);
 });
 
+document.getElementById("saveButton").addEventListener("click",()=>{
+    const fileName = prompt("Enter a file name to save:")
 
-const saveAsFile = () => {
-    const content = document.getElementById("editor").value;
-    if (content !== lastSavedContent) {
-        saveTextFile(content);
-        lastSavedContent = content;
-        showFeedback("Saved");
+    if(fileName){
+        saveFile(fileName)
     }
-};
-
-const saveTextFile = (content) => {
-    try {
-        const fileData = {
-            name: "saved_content.txt",
-            content: content,
-        };
-        localStorage.setItem("savedTextFile", JSON.stringify(fileData));
-        showFeedback("Saved");
-        console.log("File saved successfully");
-    } catch (error) {
-        console.error("Failed to save the file", error);
-    }
-};
+})
 
 
-document.getElementById("saveButton").addEventListener("click", saveAsFile);
 
 
 const openFile = (event) => {
