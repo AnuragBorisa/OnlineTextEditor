@@ -70,6 +70,9 @@ document.getElementById("mySaves").addEventListener("click", () => {
     }
 
     files.forEach((fileName) => {
+    const listItemContainer = document.createElement("div");
+    listItemContainer.classList.add("list-item-container")
+
         const listItem = document.createElement("li");
         listItem.textContent = fileName;
         listItem.classList.add("sidebar-item");
@@ -77,7 +80,23 @@ document.getElementById("mySaves").addEventListener("click", () => {
             switchToFile(fileName);
             sidebar.style.display = "none";
         });
-        fileList.appendChild(listItem);
+        
+        const deleteButton = document.createElement("button")
+        deleteButton.textContent = "Delete"
+        deleteButton.classList.add("delete-button")
+        deleteButton.addEventListener("click",(e)=>{
+         e.stopPropagation();
+         if (confirm(`Are you sure you want to delete the file "${fileName}"?`)) {
+            localStorage.removeItem(`${userId}_${fileName}`);
+            listItemContainer.remove();
+            showFeedback(`File "${fileName} deleted.`)
+         }
+        })
+        
+        listItemContainer.append(listItem);
+        listItemContainer.append(deleteButton);
+
+        fileList.appendChild(listItemContainer);
     });
 
     sidebar.style.display = "block"; 
@@ -147,11 +166,14 @@ document.getElementById("saveButton").addEventListener("click", addNewFile);
 
 document.getElementById("addFile").addEventListener("click",()=>{
     const fileName = prompt("Enter the file name")
-    activeFileId = `${userId}_${fileName}`;
-    document.getElementById("editor").value = "";  
-    lastSavedContent = ""; 
-    saveToLocalStorage(activeFileId, "");
-    showFeedback(`New file "${fileName}" created.`);
+    if(fileName!=null){
+        activeFileId = `${userId}_${fileName}`;
+        document.getElementById("editor").value = "";  
+        lastSavedContent = ""; 
+        saveToLocalStorage(activeFileId, "");
+        showFeedback(`New file "${fileName}" created.`);
+    }
+   
 });
 
 

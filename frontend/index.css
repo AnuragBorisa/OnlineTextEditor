@@ -120,23 +120,48 @@ nav button:hover {
     margin: 0;
 }
 
-.sidebar-item {
-    cursor: pointer;
-    padding: 12px;
-    margin-bottom: 8px;
+/* File item container */
+.list-item-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    margin-bottom: 10px;
     background-color: #2f2f3b;
     border-radius: 8px;
-    color: #eaeaea;
-    font-size: 14px;
-    font-weight: 500;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease;
 }
 
-.sidebar-item:hover {
+.list-item-container:hover {
     background-color: #3d3d4c;
-    transform: translateX(5px); /* Subtle slide effect */
 }
 
+/* File name styling */
+.sidebar-item {
+    font-size: 14px;
+    color: #eaeaea;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* Delete button */
+.delete-button {
+    padding: 5px 12px;
+    background-color: #ff3b57; /* Red delete button */
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+    background-color: #e33a50; /* Darker red for hover */
+}
+
+/* Close sidebar button */
 #closeSidebar {
     margin-top: 20px;
     padding: 12px;
