@@ -1,10 +1,63 @@
-/* Apply global styles */
+/* Global styles */
 body {
     margin: 0;
     padding: 0;
-    background-color: rgb(15, 5, 19); /* Keep the global background black */
-    color: white; /* Ensure text is visible on black background */
-    font-family: Arial, sans-serif; /* Set a clean font */
+    background-color: #0f0f17; /* Dark neutral background */
+    color: #eaeaea; /* Subtle light text */
+    font-family: 'Inter', sans-serif; /* Clean and modern font */
+    line-height: 1.6;
+}
+
+/* Navbar styles */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: #1c1c28; /* Neutral dark background */
+    border-bottom: 1px solid #333; /* Subtle border for separation */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Slight shadow for depth */
+}
+
+nav h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+/* Navbar buttons */
+nav button {
+    padding: 10px 20px;
+    margin: 0 8px;
+    background-color: #2f2f3b; /* Neutral dark button background */
+    border: none;
+    border-radius: 8px;
+    color: #eaeaea;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+nav button:hover {
+    background-color: #3d3d4c; /* Slightly lighter on hover */
+    transform: translateY(-2px); /* Subtle lift */
+}
+
+#addFile {
+    background-color: #ff5722; /* Eye-catching accent color */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+#addFile:hover {
+    background-color: #e64a19; /* Darker shade of accent color */
 }
 
 /* Editor container styles */
@@ -12,28 +65,127 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Full viewport height */
+    height: calc(100vh - 70px); /* Full viewport height minus navbar */
     padding: 20px;
 }
 
-/* Textarea styles */
 #editor {
-    width: 80%; /* Take up 80% of the page width */
-    height: 80%; /* Take up 80% of the page height */
-    background-color: rgb(28, 6, 46); /* White background for the editor */
-    color: rgb(63, 189, 13); /* Black text color for readability */
-    border: 2px solid #444; /* Slight border for definition */
-    border-radius: 8px; /* Rounded corners */
-    padding: 10px; /* Space inside the textarea */
-    font-size: 16px; /* Make the text easily readable */
-    font-family: 'Courier New', Courier, monospace; /* Ideal for code and text */
-    resize: none; /* Disable resizing for consistency */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    width: 90%;
+    height: 80%;
+    background-color: #1c1c28; /* Dark editor background */
+    color: #d0d0d0; /* Subtle text color for reduced eye strain */
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace; /* Ideal for text editing */
+    resize: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Depth effect */
 }
 
-/* Focus state for the editor */
 #editor:focus {
-    outline: none; /* Remove default focus outline */
-    border-color: #ff00c8; /* Highlight border on focus */
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Glow effect */
+    outline: none;
+    border-color: #6c63ff; /* Subtle accent for focus */
+    box-shadow: 0 0 12px rgba(108, 99, 255, 0.5); /* Glow on focus */
+}
+
+/* Sidebar styles */
+#sidebar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    background-color: #1c1c28; /* Consistent dark background */
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    overflow-y: auto;
+    z-index: 1000;
+    border-right: 1px solid #333;
+}
+
+#sidebar h3 {
+    margin-top: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #333;
+}
+
+#sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-item {
+    cursor: pointer;
+    padding: 12px;
+    margin-bottom: 8px;
+    background-color: #2f2f3b;
+    border-radius: 8px;
+    color: #eaeaea;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.sidebar-item:hover {
+    background-color: #3d3d4c;
+    transform: translateX(5px); /* Subtle slide effect */
+}
+
+#closeSidebar {
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #ff3b57; /* Accent red for closing */
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#closeSidebar:hover {
+    background-color: #e33a50;
+}
+
+/* Feedback styles */
+.feedback {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4caf50; /* Positive feedback color */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    animation: fadeIn 0.3s ease, fadeOut 0.3s ease 2.7s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(10px);
+    }
 }
