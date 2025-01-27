@@ -1,6 +1,7 @@
 let lastSavedContent = "";
 let debounceTimer;
 let activeFileId = null;
+let count = 0;
 
 
 const getUserId = () => {
@@ -207,3 +208,22 @@ document.getElementById("clearContent").addEventListener("click", () => {
     const textArea = document.getElementById("editor");
     textArea.value = "";
 });
+
+
+const editor = document.getElementById("editor")
+const counter = document.getElementById("counter");
+
+const updateLineNumber = () => {
+    const lines = editor.value.split("\n").length;
+    const lineNumbers = Array.from({length:lines},(_,i)=> i+1).join("\n")
+    counter.textContent = lineNumbers;
+}
+
+function syncScroll(){
+    counter.scrollTop = editor.scrollTop
+}
+
+updateLineNumber();
+
+editor.addEventListener("input",updateLineNumber);
+editor.addEventListener("scroll",syncScroll)

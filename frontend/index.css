@@ -64,9 +64,25 @@ nav button:hover {
 .editor-container {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    gap: 10px; /* Spacing between counter and editor */
     height: calc(100vh - 70px); /* Full viewport height minus navbar */
     padding: 20px;
+}
+
+#counter {
+    width: 10px;
+    height: 80%;
+    background-color: #1c1c28; /* Dark background for counter */
+    color: #6c757d; /* Subtle text color for numbers */
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace; /* Monospace for alignment */
+    text-align: right;
+    padding: 20px 10px 20px 0; /* Add padding for better spacing */
+    border: 1px solid #333;
+    border-radius: 10px 0 0 10px; /* Rounded corners on the left */
+    overflow: hidden; /* Hide overflow if content grows too large */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Depth effect */
 }
 
 #editor {
@@ -75,7 +91,7 @@ nav button:hover {
     background-color: #1c1c28; /* Dark editor background */
     color: #d0d0d0; /* Subtle text color for reduced eye strain */
     border: 1px solid #333;
-    border-radius: 10px;
+    border-radius: 0 10px 10px 0; /* Rounded corners on the right */
     padding: 20px;
     font-size: 16px;
     font-family: 'Courier New', Courier, monospace; /* Ideal for text editing */
